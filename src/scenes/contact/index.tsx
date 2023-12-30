@@ -1,57 +1,109 @@
-import { Box,useTheme } from "@mui/material"
-import { Header } from "../../components/Header"
-import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
-import { mockDataContacts } from "../../data/mockData";
+import { Box, useTheme } from "@mui/material";
+import { Header } from "../../components/Header";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+// import { mockDataContacts } from "../../data/mockData";
 import myColors from "../../components/color";
 import CustomCell from "../../components/CustomCell";
-
+import { useQuery } from "@tanstack/react-query";
+import useAxiosInterceptors from "../auth/hooks/useAxiosInterceptor";
+import uuid from "react-uuid";
 
 const Contact = () => {
-    const theme = useTheme()
-    const { backgroundColorAction, backgroundColorHeaderFooter, elementColor, elementColorOnHover} = myColors(theme.palette.mode)
+  const theme = useTheme();
+  const axiosInterceptor = useAxiosInterceptors();
+  const { backgroundColorAction, elementColor, elementColorOnHover } = myColors(
+    theme.palette.mode
+  );
 
-    const coloums:GridColDef[] = [
-        {field: "id", headerName: "ID", renderCell: (params) => <CustomCell title={params.row.id} /> }, 
-        {field: "name", headerName: "Name", flex: 1, cellClassName: "name-contact", renderCell: (params) => <CustomCell title={params.row.name} myColor={elementColor}/>},
-        {field: "age", headerName: "Age", type: "number", renderCell: (params) => <CustomCell title={params.row.age} />},
-        {field: "phone", headerName: "Phone Number", flex: 1, renderCell: (params) => <CustomCell title={params.row.phone} />},
-        {field: "email", headerName: "Email adress", flex: 2, renderCell: (params) => <CustomCell title={params.row.email} />},
-        {field: "address", headerName: "Adress",flex: 2, renderCell: (params) => <CustomCell title={params.row.address} /> },
-        {field: "city", headerName: "City", renderCell: (params) => <CustomCell title={params.row.city} />},
-        {field: "zipCode", headerName: "Zip Code", renderCell: (params) => <CustomCell title={params.row.zipCode} />},
-        {field: "registrarId", headerName: "Registrar Id", renderCell: (params) => <CustomCell title={params.row.registrarId} />}
-    ]
-    
-    return (
-        <Box>
-            <Header title="Contact" subtitle="List of Contacts for Future Reference"/>
-            <Box my={5} sx={{
-                '.MuiDataGrid-toolbarContainer' : {
-                    padding: 2,
-                },
-                '.MuiDataGrid-columnHeaders' : {
-                    backgroundColor: backgroundColorHeaderFooter
-                },
-                '.MuiDataGrid-footerContainer': {
-                    backgroundColor: backgroundColorHeaderFooter
-                },
-                '.MuiDataGrid-row:hover':{
-                    backgroundColor: backgroundColorAction,
-                    color: elementColorOnHover,
-                }, 
-                '.MuiButton-textPrimary': {
-                    color: elementColor,
-                },
-                
-            }}>
-                <DataGrid 
-                    columns={coloums} 
-                    rows={mockDataContacts} 
-                    slots={{ toolbar: GridToolbar }}
-                />
-            </Box>
-        </Box>
-    )
-}
+  const url = "/user/showusers";
 
-export default Contact
+  const { data, isError, isFetching } = useQuery({
+    queryKey: ["team"],
+    queryFn: async () => {
+      const res = await axiosInterceptor({
+        method: "GET",
+        url,
+      });
+      return res.data;
+    },
+  });
+
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  if (isFetching) {
+    return <div>Loading ...</div>;
+  }
+
+  const coloums: GridColDef[] = [
+    {
+      field: "userName",
+      headerName: "User Name",
+      type: "string",
+      flex: 1,
+      renderCell: (params) => (
+        <CustomCell title={params.row.userName} myColor={elementColor} />
+      ),
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      type: "string",
+      flex: 1,
+      renderCell: (params) => <CustomCell title={params.row.email} />,
+    },
+    {
+      field: "phoneNumber",
+      headerName: "Phone Number",
+      flex: 1,
+      renderCell: (params) => <CustomCell title={params.row.phone} />,
+    },
+    {
+      field: "country",
+      headerName: "Country",
+      flex: 1,
+      renderCell: (params) => <CustomCell title={params.row.country} />,
+    },
+  ];
+
+  return (
+    <Box>
+      <Header
+        title="Contact"
+        subtitle="List of Contacts for Future Reference"
+      />
+      <Box
+        my={5}
+        sx={{
+          bgcolor: theme.palette.background.paper,
+          ".MuiDataGrid-toolbarContainer": {
+            padding: 2,
+          },
+          ".MuiDataGrid-columnHeaders": {
+            backgroundColor: theme.palette.background.default,
+          },
+          ".MuiDataGrid-footerContainer": {
+            backgroundColor: theme.palette.background.default,
+          },
+          ".MuiDataGrid-row:hover": {
+            backgroundColor: backgroundColorAction,
+            color: elementColorOnHover,
+          },
+          ".MuiButton-textPrimary": {
+            color: elementColor,
+          },
+        }}
+      >
+        <DataGrid
+          columns={coloums}
+          rows={data}
+          slots={{ toolbar: GridToolbar }}
+          getRowId={() => uuid()}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+export default Contact;

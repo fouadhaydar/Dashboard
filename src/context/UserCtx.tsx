@@ -5,19 +5,21 @@ interface User {
   userName: string;
 }
 
-export const UserContext = createContext({
+export const UserContext = createContext<{
+  userAuth: User | undefined;
+  setLoggedIn: (user: User) => void;
+  setLogOut: () => void;
+}>({
   userAuth: {
     token: "",
     role: "",
     userName: "",
   } as User | undefined,
-  setLoggedIn: (user: User) => {},
+  setLoggedIn: () => {},
   setLogOut: () => {},
 });
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  // const [loggedIn, setLogIn] = useState<boolean>(false);
-
   const [userAuth, setUserAuth] = useState<User | undefined>(undefined);
 
   const setLoggedIn = useCallback(

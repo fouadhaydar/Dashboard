@@ -14,7 +14,7 @@ const Options = () => {
       product: Product;
       productVariation: ProductVariation;
     }>();
-  const handleClick = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     setValues((prev) => {

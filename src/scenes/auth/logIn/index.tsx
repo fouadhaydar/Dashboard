@@ -237,7 +237,9 @@ const LogIn = () => {
               {isError && (
                 <AlertMessage
                   error={isError}
-                  message={error.response.data.message}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  //@ts-ignore
+                  message={error?.response?.data?.message}
                 />
               )}{" "}
             </Box>

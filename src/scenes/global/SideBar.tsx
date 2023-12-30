@@ -167,6 +167,8 @@ const SideBar = () => {
       <Menu
         style={{ margin: !collapsed ? 24 : 4 }}
         menuItemStyles={{
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           button: ({ active }) => {
             return {
               ...btnHover,
@@ -206,6 +208,8 @@ const SideBar = () => {
           justifyContent: "center",
         }}
         menuItemStyles={{
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           button: ({ active }) => {
             return {
               ...btnHover,
@@ -272,6 +276,8 @@ const SideBar = () => {
           justifyContent: "center",
         }}
         menuItemStyles={{
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           button: ({ active }) => {
             return {
               ...btnHover,
@@ -322,6 +328,8 @@ const SideBar = () => {
           justifyContent: "center",
         }}
         menuItemStyles={{
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           button: ({ active }) => {
             return {
               ...btnHover,

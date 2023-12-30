@@ -14,7 +14,7 @@ import {
 } from "./validation/validation";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosInterceptors from "../auth/hooks/useAxiosInterceptor";
-import { useImage } from "./context/ImageCtxProvider";
+import { useImage } from "./hooks/useImage";
 
 const AddNewProduct = () => {
   const theme = useTheme();

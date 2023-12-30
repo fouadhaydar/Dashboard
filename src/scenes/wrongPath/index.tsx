@@ -1,13 +1,7 @@
-import { useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { tokens } from "../../Theme/constance";
 
 const WrongPath = () => {
-  const theme = useTheme();
-
-  const colors = tokens(theme.palette.mode);
-
   return (
     <Box
       display={"flex"}

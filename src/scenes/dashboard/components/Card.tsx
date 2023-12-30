@@ -1,5 +1,4 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Revenue from "../assets/Revenue";
 
 const Card = () => {

@@ -56,7 +56,7 @@ const VariantCard = ({
                 product: {
                   ...prev.product,
                   productVariantsVMs: prev.product.productVariantsVMs.filter(
-                    (ele, i) => i !== number - 1
+                    (__, i) => i !== number - 1
                   ),
                 },
               };

@@ -8,12 +8,9 @@ import myColors from "../../components/color";
 
 const Invoices = () => {
   const theme = useTheme();
-  const {
-    backgroundColorHeaderFooter,
-    backgroundColorAction,
-    elementColor,
-    elementColorOnHover,
-  } = myColors(theme.palette.mode);
+  const { backgroundColorAction, elementColor, elementColorOnHover } = myColors(
+    theme.palette.mode
+  );
 
   const coloums: GridColDef[] = [
     {

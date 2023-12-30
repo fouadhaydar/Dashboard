@@ -1,15 +1,13 @@
-import {
-  ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import { ReactNode, createContext, useCallback, useState } from "react";
 
-export const ImageCtx = createContext({
+interface ContextType {
+  imageUrl: string;
+  putImageUrl: (value: string) => void;
+}
+
+export const ImageCtx = createContext<ContextType>({
   imageUrl: "",
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  putImageUrl: (value: string) => {},
+  putImageUrl: () => {},
 });
 
 export const ImageCtxProvider = ({ children }: { children: ReactNode }) => {
@@ -24,10 +22,4 @@ export const ImageCtxProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </ImageCtx.Provider>
   );
-};
-
-export const useImage = () => {
-  const { imageUrl, putImageUrl } = useContext(ImageCtx);
-  console.log(imageUrl);
-  return { imageUrl, putImageUrl };
 };

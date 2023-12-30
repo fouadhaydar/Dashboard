@@ -334,7 +334,9 @@ const CreateAdmin = () => {
                     message={
                       !isError
                         ? "Admin Was Created Successfuly "
-                        : error.response.data.message
+                        : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          //@ts-ignore
+                          error.response.data.message
                     }
                     error={isError}
                   />

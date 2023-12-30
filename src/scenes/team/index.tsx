@@ -1,8 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { Header } from "../../components/Header";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-// import { mockDataTeam } from "../../data/mockData";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import myColors from "../../components/color";
@@ -10,18 +8,14 @@ import CustomCell from "../../components/CustomCell";
 import { tokens } from "../../Theme/constance";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosInterceptors from "../auth/hooks/useAxiosInterceptor";
-import uuid from "react-uuid";
 
 const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const {
-    backgroundColorHeaderFooter,
-    backgroundColorAction,
-    elementColorOnHover,
-    elementColor,
-  } = myColors(theme.palette.mode);
+  const { backgroundColorAction, elementColorOnHover, elementColor } = myColors(
+    theme.palette.mode
+  );
 
   const axiosInterceptor = useAxiosInterceptors();
 

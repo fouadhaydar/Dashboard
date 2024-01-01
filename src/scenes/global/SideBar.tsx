@@ -26,6 +26,7 @@ import { useLogIn } from "../../context/useLogIn";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosInterceptors from "../auth/hooks/useAxiosInterceptor";
 import Category from "@mui/icons-material/Category";
+import useSideBar from "./context/useSideBar";
 
 interface Item {
   title: string;
@@ -70,7 +71,7 @@ const Item = ({
 const SideBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  // const [collapsed, setCollapsed] = useState<boolean>(false);
   const [selected, setSelected] = useState("Dashboard");
   const { setLogOut, userAuth } = useLogIn();
 
@@ -80,9 +81,9 @@ const SideBar = () => {
     navigate("/");
   }, []);
 
-  const collapse = () => {
-    setCollapsed((prev) => !prev);
-  };
+  // const collapse = () => {
+  //   setCollapsed((prev) => !prev);
+  // };
 
   const btnHover = {
     "&:hover": {
@@ -107,6 +108,7 @@ const SideBar = () => {
     mutationKey: ["logOut"],
     mutationFn: async () => {
       const { data } = await axiosInterceptor({
+        method: "POST",
         url: "/user/logout",
       });
       return data;
@@ -119,13 +121,20 @@ const SideBar = () => {
   const logOut = () => {
     mutate();
   };
+  const { collapsed, setOpen } = useSideBar();
   return (
     <Sidebar
       collapsed={collapsed}
       backgroundColor={theme.palette.background.paper}
       style={{
         borderRightColor: theme.palette.divider,
+        position: window.innerWidth < 768 ? "absolute" : "relative",
+        zIndex: 100,
+        left: 0,
+        overflowY: "scroll",
+        maxHeight: "100vh",
       }}
+      collapsedWidth={`${innerWidth < 768 ? "0px" : "85px"}`}
     >
       {/* toogle menu and the name */}
       <Box
@@ -139,7 +148,7 @@ const SideBar = () => {
             ADMIN
           </Typography>
         )}
-        <IconButton onClick={collapse}>
+        <IconButton onClick={() => setOpen()}>
           <MenuIcon />
         </IconButton>
       </Box>

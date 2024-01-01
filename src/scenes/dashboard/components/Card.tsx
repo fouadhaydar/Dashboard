@@ -13,20 +13,10 @@ const Card = () => {
         justifyContent: "center",
         alignItems: "center",
         gap: "20px",
-        // position: "relative",
         height: "120px",
       }}
       border={`1px solid ${theme.palette.divider}`}
     >
-      {/* <Box>
-        <TrendingUpIcon
-          sx={{
-            color: "green",
-            fontSize: "40px",
-          }}
-        />
-        <span>+20%</span>
-      </Box> */}
       <Box
         sx={{
           width: "30%",

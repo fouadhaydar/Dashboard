@@ -47,9 +47,6 @@ const Categories = () => {
     onSuccess: () => {
       refetch();
     },
-    // onError: (error) => {
-    //   // console.log(error, "Error");
-    // },
   });
 
   const colums: GridColDef[] = [
@@ -91,6 +88,7 @@ const Categories = () => {
       field: "categoryName",
       headerName: "Category Name",
       flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <CustomCell title={params.row.categoryName} myColor={elementColor} />
       ),
@@ -99,6 +97,7 @@ const Categories = () => {
       field: "productsNumber",
       headerName: "Product's Number",
       flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <CustomCell title={params.row.productsNumber} myColor={elementColor} />
       ),
@@ -107,6 +106,7 @@ const Categories = () => {
       field: "CategoryMarketShare",
       headerName: "Category Market Share",
       flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <CustomCell
           title={params.row.CategoryMarketShare}
@@ -179,7 +179,11 @@ const Categories = () => {
           rowHeight={90}
           rows={categories ?? []}
           slots={{
-            toolbar: () => CustomeToolBar({ handleClick: () => setOpen(true) }),
+            toolbar: () =>
+              CustomeToolBar({
+                handleClick: () => setOpen(true),
+                title: "Add New Category",
+              }),
           }}
         />
       </Box>

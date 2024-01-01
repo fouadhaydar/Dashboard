@@ -19,7 +19,6 @@ import Line from "./scenes/line";
 import Calendar from "./scenes/calender";
 import Geography from "./scenes/geography";
 import WrongPath from "./scenes/wrongPath";
-// import ProfileForm from "./scenes/form";
 import LogIn from "./scenes/auth/logIn";
 import { useLogIn } from "./context/useLogIn";
 import ResetPassword from "./scenes/auth/resetPassword/ResetPassword";
@@ -27,10 +26,12 @@ import CreateAdmin from "./scenes/auth/createAdmin";
 import Products from "./scenes/products";
 import AddNewProduct from "./scenes/newProduct";
 import Categories from "./scenes/categories";
+import { SideBarProvider } from "./scenes/global/context/SideBarCtx";
 
 const RequierAuth = () => {
   const { userAuth } = useLogIn();
-  return userAuth ? <Outlet /> : <Navigate to="/login" />;
+
+  return userAuth ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 const ProtectedRoute = () => {
@@ -71,13 +72,16 @@ export const router = createBrowserRouter(
 
 function App() {
   const { userAuth } = useLogIn();
+
   return (
     <div className="app">
-      {userAuth && <SideBar />}
-      <main className="content">
-        {userAuth && <Topbar />}
-        <Outlet />
-      </main>
+      <SideBarProvider>
+        {userAuth && <SideBar />}
+        <main className="content">
+          {userAuth && <Topbar />}
+          <Outlet />
+        </main>
+      </SideBarProvider>
     </div>
   );
 }

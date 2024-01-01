@@ -11,13 +11,7 @@ const ProductVariant = () => {
     productVariation: ProductVariation;
   }>();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: "20px",
-        maxHeight: "950px",
-      }}
-    >
+    <Box className="product-variant">
       <Box
         sx={{
           backgroundColor: theme.palette.background.paper,
@@ -39,18 +33,10 @@ const ProductVariant = () => {
         />
         <Options />
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          flex: 1,
-          overflowY: "scroll",
-        }}
-      >
+      <Box className="options">
         {values.product.productVariantsVMs.map((ele, i) => (
           <VariantCard
-            key={i}
+            key={ele.sku}
             number={i + 1}
             color={ele.optionsValues["color"]}
             ramStorage={ele.optionsValues["ramStorage"]}

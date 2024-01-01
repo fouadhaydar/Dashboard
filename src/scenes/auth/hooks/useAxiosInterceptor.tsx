@@ -8,6 +8,7 @@ const useAxiosInterceptors = () => {
     mutationKey: ["refreshToken"],
     mutationFn: async () => {
       const { data } = await axiosCustom({
+        method: "POST",
         url: "/user/refreshtoken",
       });
       return data;

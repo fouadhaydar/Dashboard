@@ -47,29 +47,7 @@ const CustomeModalAddCat = ({ handleClose, open }: DataModale) => {
   const { btnColor, btnColorHover, btnTextColor } = myColors(
     theme.palette.mode
   );
-  // const axiosInterceptor = useAxiosInterceptors();
 
-  // const { mutate, isError, isPending } = useMutation({
-  //   mutationKey: ["addNewCategory"],
-  //   mutationFn: async (categoryName: string) => {
-  //     // console.log("name", categoryName);
-  //     const { data } = await axiosInterceptor({
-  //       url: "/category/addcategory",
-  //       method: "POST",
-  //       withCredentials: true,
-  //       data: {
-  //         categoryName,
-  //       },
-  //     });
-  //     return data;
-  //   },
-  //   onSuccess: () => {
-  //     console.log("success");
-  //   },
-  //   onError: () => {
-  //     console.log("error");
-  //   },
-  // });
   const { pendingMutation, muationError, mutate } = useData({ handleClose });
 
   if (pendingMutation) {
@@ -99,7 +77,6 @@ const CustomeModalAddCat = ({ handleClose, open }: DataModale) => {
         const valid = validateFileType(event.target.files[0]);
 
         if (!valid) {
-          console.log("invalid type");
           return;
         }
 
@@ -110,7 +87,6 @@ const CustomeModalAddCat = ({ handleClose, open }: DataModale) => {
           .then((snapshot) => {
             getDownloadURL(snapshot.ref)
               .then((url) => {
-                // console.log(url);
                 setImageUrl(url);
               })
               .catch((error) => {
@@ -125,8 +101,6 @@ const CustomeModalAddCat = ({ handleClose, open }: DataModale) => {
 
         const fr = new FileReader();
 
-        // console.log(file);
-        // setImageName(file.name)
         fr.readAsDataURL(file);
         fr.onload = () => {
           if (fr.readyState === fr.DONE) {

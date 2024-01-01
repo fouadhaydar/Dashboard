@@ -7,7 +7,7 @@ const Pie = () => {
     <Box>
       <Header title="Pie Chart" subtitle="" />
       <Box height={"100vh"} color={"white"}>
-        <MyResponsivePie height="100%" />
+        <MyResponsivePie height="100%" direction="column" />
       </Box>
     </Box>
   );

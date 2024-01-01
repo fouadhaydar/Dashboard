@@ -69,12 +69,14 @@ const Products = () => {
     {
       field: "discount",
       flex: 1,
+      minWidth: 100,
       headerName: "Discount",
       renderCell: (params) => <CustomCell title={`${params.row.discount} %`} />,
     },
     {
       field: "manufacturerName",
       flex: 1,
+      minWidth: 100,
       headerName: "Manufacturer",
       renderCell: (params) => (
         <CustomCell title={params.row.manufacturerName} />
@@ -83,12 +85,14 @@ const Products = () => {
     {
       field: "categoryName",
       flex: 1,
+      minWidth: 200,
       headerName: "Category",
       renderCell: (params) => <CustomCell title={params.row.categoryName} />,
     },
     {
       field: "addedDate",
       flex: 2,
+      minWidth: 250,
       headerName: "Date Of Creation",
       renderCell: (params) => {
         const dateObj = new Date(params.row.addedDate);
@@ -107,6 +111,7 @@ const Products = () => {
     {
       field: "edit",
       headerName: "Edit",
+      minWidth: 100,
       renderCell: (params) => (
         <IconButton onClick={() => handleEdit(params.row.id)}>
           <Edit />
@@ -115,6 +120,7 @@ const Products = () => {
     },
     {
       field: "delete",
+      minWidth: 100,
       headerName: "Delete",
       renderCell: (params) => (
         <IconButton onClick={() => handleDelete(params.row.id)}>
@@ -176,6 +182,7 @@ const Products = () => {
             toolbar: () =>
               CustomeToolBar({
                 handleClick: () => navigate("/add-new-product"),
+                title: "Add New Product",
               }),
           }}
           density="comfortable"

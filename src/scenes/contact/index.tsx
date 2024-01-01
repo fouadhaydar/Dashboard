@@ -42,6 +42,7 @@ const Contact = () => {
       headerName: "User Name",
       type: "string",
       flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <CustomCell title={params.row.userName} myColor={elementColor} />
       ),
@@ -51,18 +52,21 @@ const Contact = () => {
       headerName: "Email",
       type: "string",
       flex: 1,
+      minWidth: 250,
       renderCell: (params) => <CustomCell title={params.row.email} />,
     },
     {
       field: "phoneNumber",
       headerName: "Phone Number",
       flex: 1,
+      minWidth: 200,
       renderCell: (params) => <CustomCell title={params.row.phone} />,
     },
     {
       field: "country",
       headerName: "Country",
       flex: 1,
+      minWidth: 150,
       renderCell: (params) => <CustomCell title={params.row.country} />,
     },
   ];

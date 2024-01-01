@@ -94,7 +94,7 @@ const Dashboard = () => {
         {/* </Box> */}
         {/* <Box sx={{ display: "flex", gap: "20px", height: "50vh", width: "100%" }}> */}
         <BarChart height="400px" />
-        <MyResponsivePie height="400px" />
+        <MyResponsivePie height="400px" direction="row" />
         <LineChart height="400px" />
         <Trafic />
       </Box>

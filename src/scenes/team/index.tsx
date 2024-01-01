@@ -39,18 +39,13 @@ const Team = () => {
   }
 
   const coloums: GridColDef[] = [
-    // {
-    //   field: "id",
-    //   headerName: "ID",
-    //   renderCell: () => <CustomCell title={uuid()} />,
-    // },
     {
       field: "userName",
       headerName: "User Name",
-      flex: 1,
       renderCell: (params) => (
         <CustomCell title={params.row.userName} myColor={elementColor} />
       ),
+      minWidth: 100,
     },
     {
       field: "country",
@@ -80,18 +75,21 @@ const Team = () => {
       field: "phoneNumber",
       headerName: "Phone Number",
       flex: 1,
+      minWidth: 100,
       renderCell: (params) => <CustomCell title={params.row.phone} />,
     },
     {
       field: "email",
       headerName: "Email adress",
-      flex: 1,
+      flex: 2,
+      minWidth: 250,
       renderCell: (params) => <CustomCell title={params.row.email} />,
     },
     {
       field: "accessLevel",
       headerName: "Access Level",
       flex: 1,
+      minWidth: 100,
       renderCell: ({ row: { role } }) => {
         return (
           <Box
@@ -103,8 +101,7 @@ const Team = () => {
                 role === "admin"
                   ? colors.greenAccent[600]
                   : colors.greenAccent[800],
-              minwidth: "100px",
-              width: "100%",
+              width: "100px",
               padding: "7px",
               borderRadius: "7px",
               gap: "4px",

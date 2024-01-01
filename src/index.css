@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Source+Sans+3:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Source+Sans+3:wght@400;600;700&display=swap");
 
 html,
 body,
-#root, .app, .content {
+#root,
+.app,
+.content {
   height: 100%;
   width: 100%;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .app {
   display: flex;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
@@ -17,7 +21,6 @@ body,
   height: 5px;
   margin-right: 2px;
 }
-
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -39,4 +42,88 @@ body,
   padding: 40px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 20px;
+    overflow-y: visible;
+  }
+}
+
+.form-parent {
+  width: 50%;
+}
+
+@media (min-width: 280px) and (max-width: 780px) {
+  .form-parent {
+    width: 90%;
+  }
+}
+
+.create-admin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+@media (min-width: 280px) and (max-width: 780px) {
+  .create-admin {
+    flex-direction: column;
+  }
+}
+.menu-icon {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .menu-icon {
+    display: none !important;
+  }
+}
+
+/* add product */
+.add-product {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (min-width: 280px) and (max-width: 780px) {
+  .add-product {
+    flex-direction: column;
+  }
+}
+
+.product-variant {
+  display: flex;
+  gap: 20px;
+  max-height: 950px;
+  width: 100%;
+}
+
+@media (min-width: 280px) and (max-width: 780px) {
+  .product-variant {
+    flex-direction: column;
+    max-height: fit-content;
+  }
+}
+
+/* options */
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  overflow-y: scroll;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 280px) and (max-width: 780px) {
+  .options {
+    overflow-y: visible;
+  }
 }

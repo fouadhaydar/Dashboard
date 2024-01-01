@@ -8,10 +8,6 @@ const Picker = () => {
     productVariation: ProductVariation;
   }>();
   const theme = useTheme();
-  // const { btnColor, btnTextColor, btnColorHover } = myColors(
-  //   theme.palette.mode
-  // );
-  // console.log(values);
   return (
     <Box
       sx={{

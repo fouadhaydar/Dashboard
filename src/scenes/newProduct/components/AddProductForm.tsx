@@ -21,9 +21,8 @@ const AddProductForm = () => {
       productVariation: ProductVariation;
     }>();
 
-  // console.log(values);
   const helperTextStyle = {
-    width: "50%",
+    width: "100%",
     ".MuiFormHelperText-contained": {
       marginY: "12px",
       marginX: 0,
@@ -84,7 +83,7 @@ const AddProductForm = () => {
           gap={"20px"}
           marginTop={"40px"}
         >
-          <Box display={"flex"} gap={"20px"}>
+          <Box className="add-product">
             <TextField
               required
               label="Product Title"
@@ -147,7 +146,7 @@ const AddProductForm = () => {
                 ))}
             </TextField>
           </Box>
-          <Box display={"flex"} gap={"20px"}>
+          <Box className="add-product">
             <TextField
               required
               label="Discount"
@@ -223,7 +222,7 @@ const AddProductForm = () => {
               color={color}
             />
           </Box>
-          <Box display={"flex"} gap={"20px"} width={"100%"}>
+          <Box className="add-product" width={"100%"}>
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -290,19 +289,3 @@ const AddProductForm = () => {
 };
 
 export default AddProductForm;
-
-// const FormikWrapper = ({
-//   // children,
-//   props,
-// }: {
-//   // children: ({...func}) => React.JSX.Element;
-//   props: FormikConfig<FormikValues>;
-// }) => {
-//   return (
-//     <Formik {...props}>
-//       {/* {(formikProps) => (
-//         <Form>{children(formikProps)}</Form>
-//       )} */}
-//     </Formik>
-//   );
-// };

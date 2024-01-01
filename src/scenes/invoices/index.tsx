@@ -23,6 +23,7 @@ const Invoices = () => {
       headerName: "Name",
       flex: 1,
       cellClassName: "name-contact",
+      minWidth: 200,
       renderCell: (params) => (
         <CustomCell title={params.row.name} myColor={elementColor} />
       ),
@@ -30,6 +31,8 @@ const Invoices = () => {
     {
       field: "cost",
       headerName: "Cost",
+      flex: 1,
+      minWidth: 100,
       renderCell: (params) => (
         <CustomCell title={`$${params.row.cost}`} myColor={elementColor} />
       ),
@@ -38,17 +41,21 @@ const Invoices = () => {
       field: "phone",
       headerName: "Phone Number",
       flex: 1,
+      minWidth: 200,
       renderCell: (params) => <CustomCell title={params.row.phone} />,
     },
     {
       field: "email",
       headerName: "Email adress",
       flex: 1,
+      minWidth: 250,
       renderCell: (params) => <CustomCell title={params.row.email} />,
     },
     {
       field: "date",
       headerName: "Date",
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => <CustomCell title={params.row.date} />,
     },
   ];

@@ -77,8 +77,8 @@ const ResetPassword = () => {
           return (
             <>
               <Form
+                className="form-parent"
                 style={{
-                  width: "60%",
                   display: "flex",
                   flexDirection: "column",
                   gap: "20px",

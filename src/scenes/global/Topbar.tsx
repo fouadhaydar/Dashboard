@@ -1,27 +1,16 @@
-import {
-  Box,
-  IconButton,
-  InputBase,
-  // InputBase,
-  // Menu,
-  // MenuItem,
-  useTheme,
-} from "@mui/material";
+import { Box, IconButton, useTheme } from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-// import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-// import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-// import { useNavigate } from "react-router-dom";
 import { useColor } from "../../Theme/cunstomeHooks";
 import { useState } from "react";
 import MenuNotification from "./MenuNotification";
+import MenuIcon from "@mui/icons-material/Menu";
+import useSideBar from "./context/useSideBar";
+import "../../index.css";
 
 const Topbar = () => {
   const theme = useTheme();
-  // const colors = tokens(theme.palette.mode);
-  // const colorMode = useContext(ColorModeCtx);
   const { toggleColorMode } = useColor();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -33,21 +22,32 @@ const Topbar = () => {
     setAnchorEl(null);
   };
 
+  const { setOpen } = useSideBar();
+
   return (
     <Box display={"flex"} justifyContent={"space-between"} py={2}>
-      <Box
+      <IconButton
+        onClick={() => {
+          setOpen();
+        }}
+        className="menu-icon"
+      >
+        <MenuIcon />
+      </IconButton>
+      {/* <Box
         display={"flex"}
         justifyContent={"space-between"}
         bgcolor={theme.palette.background.paper}
         border={`1px solid ${theme.palette.divider}`}
         borderRadius={"7px"}
-        width={"300px"}
+        maxWidth={"300px"}
+        height={"40px"}
       >
         <InputBase sx={{ ml: 2, flex: 1 }} placeholder="search" />
         <IconButton>
           <SearchIcon />
         </IconButton>
-      </Box>
+      </Box> */}
       <Box>
         <IconButton onClick={toggleColorMode}>
           {theme.palette.mode === "dark" ? (

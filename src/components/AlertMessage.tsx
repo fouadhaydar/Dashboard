@@ -8,7 +8,7 @@ const AlertMessage = ({
   error: boolean;
 }) => {
   return (
-    <Box>
+    <Box sx={{ marginBlock: "20px" }}>
       <Alert
         variant="outlined"
         severity={`${error ? "error" : "success"}`}

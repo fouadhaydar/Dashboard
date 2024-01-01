@@ -71,8 +71,6 @@ const Calendar = () => {
           events={currentEvents}
         />
       </Box>
-      {/* pop up */}
-      {/* <CustomModal handleClose={handleClose} open={open} handleAdd={handleAdd} selectedDate={selectedDate}/> */}
     </Box>
   );
 };

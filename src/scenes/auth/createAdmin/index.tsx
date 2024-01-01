@@ -76,11 +76,6 @@ const CreateAdmin = () => {
   const { btnColor, btnTextColor, btnColorHover } = myColors(
     theme.palette.mode
   );
-  //borderRadius: "5px",
-  // border: 1,
-  // borderStyle: "solid",
-  // borderColor: theme.palette.divider,
-  // backgroundColor: theme.palette.background.paper
 
   return (
     <>
@@ -114,13 +109,7 @@ const CreateAdmin = () => {
                         width: "100%",
                       }}
                     >
-                      <Box
-                        display={"flex"}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                        gap={"30px"}
-                        width={"100%"}
-                      >
+                      <Box className="create-admin">
                         <TextField
                           required
                           label="User Name"
@@ -135,6 +124,7 @@ const CreateAdmin = () => {
                           onChange={handleChange}
                           sx={{
                             ...helperTextStyle,
+                            width: "100%",
                           }}
                           color={color}
                         />
@@ -152,17 +142,12 @@ const CreateAdmin = () => {
                           onChange={handleChange}
                           sx={{
                             ...helperTextStyle,
+                            width: "100%",
                           }}
                           color={color}
                         />
                       </Box>
-                      <Box
-                        display={"flex"}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                        gap={"30px"}
-                        width={"100%"}
-                      >
+                      <Box className="create-admin">
                         <TextField
                           required
                           label="Phone Number"
@@ -177,6 +162,7 @@ const CreateAdmin = () => {
                           onChange={handleChange}
                           sx={{
                             ...helperTextStyle,
+                            width: "100%",
                           }}
                           color={color}
                         />
@@ -194,6 +180,7 @@ const CreateAdmin = () => {
                           onBlur={handleBlur}
                           sx={{
                             ...helperTextStyle,
+                            width: "100%",
                           }}
                           color={color}
                         >
@@ -206,13 +193,7 @@ const CreateAdmin = () => {
                           )}
                         </TextField>
                       </Box>
-                      <Box
-                        display={"flex"}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                        gap={"30px"}
-                        width={"100%"}
-                      >
+                      <Box className="create-admin">
                         <TextField
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -231,15 +212,10 @@ const CreateAdmin = () => {
                           sx={{
                             flex: 1,
                             ...helperTextStyle,
+                            width: "100%",
                           }}
                         />
-                        <Box
-                          display={"flex"}
-                          gap={"30px"}
-                          justifyContent={"center"}
-                          alignItems={"center"}
-                          flex={1}
-                        >
+                        <Box className="create-admin" flex={1}>
                           <TextField
                             onBlur={handleBlur}
                             onChange={handleChange}
@@ -256,6 +232,7 @@ const CreateAdmin = () => {
                             helperText={touched.city && errors.city}
                             sx={{
                               ...helperTextStyle,
+                              width: "100%",
                             }}
                           />
                           <TextField
@@ -274,6 +251,7 @@ const CreateAdmin = () => {
                             helperText={touched.zipCode && errors.zipCode}
                             sx={{
                               ...helperTextStyle,
+                              width: "100%",
                             }}
                           />
                         </Box>
@@ -293,13 +271,6 @@ const CreateAdmin = () => {
                           }}
                           errors={errors}
                           touched={touched}
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "flex-start",
-                            gap: "30px",
-                            width: "100%",
-                          }}
                         />
                       </Box>
                       <Button

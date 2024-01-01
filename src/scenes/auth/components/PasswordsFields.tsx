@@ -27,7 +27,6 @@ interface PasswordsFieldsInterface {
   values: Passwords;
   errors: FormikErrors<Passwords>;
   touched: FormikTouched<Passwords>;
-  style?: object;
 }
 
 const PasswordsFields = ({
@@ -36,7 +35,6 @@ const PasswordsFields = ({
   values,
   errors,
   touched,
-  style,
 }: PasswordsFieldsInterface) => {
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
@@ -53,7 +51,7 @@ const PasswordsFields = ({
 
   const handlePssword = () => setShowPassword((prev) => !prev);
   return (
-    <Box sx={{ ...style }}>
+    <Box className="create-admin">
       <TextField
         required
         placeholder="Password"

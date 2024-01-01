@@ -35,14 +35,14 @@ export const HorizontalStepper = ({
     <Box
       sx={{
         ".MuiSvgIcon-root": {
-          color: "GrayText",
+          color: "GrayText !important",
           fontSize: "xx-large",
         },
         ".css-oxf95d-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed": {
-          color: btnColor,
+          color: `${btnColor} !important`,
         },
         ".css-1uizxs6-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed": {
-          color: btnColor,
+          color: `${btnColor} !important`,
         },
         width: "100%",
       }}

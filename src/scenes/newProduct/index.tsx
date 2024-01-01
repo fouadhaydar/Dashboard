@@ -2,9 +2,8 @@ import { Box, Button, useTheme } from "@mui/material";
 import { Header } from "../../components/Header";
 import AddProductForm from "./components/AddProductForm";
 import ProductVariant from "./components/ProductVariant";
-// import myColors from "../../components/color";
 import { HorizontalStepper } from "./components/HorizontalStepper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import myColors from "../../components/color";
 import { Formik } from "formik";
 import { Form, useLocation } from "react-router-dom";
@@ -15,6 +14,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import useAxiosInterceptors from "../auth/hooks/useAxiosInterceptor";
 import { useImage } from "./hooks/useImage";
+import AlertMessage from "../../components/AlertMessage";
 
 const AddNewProduct = () => {
   const theme = useTheme();
@@ -23,6 +23,8 @@ const AddNewProduct = () => {
   );
 
   const [step, setStep] = useState(1);
+  const [send, setSend] = useState<undefined | boolean>(undefined);
+
   const steps = ["General information", "Create variations"];
 
   const nextStep = () => {
@@ -84,10 +86,8 @@ const AddNewProduct = () => {
   };
   const axiosInterceptor = useAxiosInterceptors();
   const { imageUrl } = useImage();
-  console.log(imageUrl);
 
   const { state } = useLocation();
-  console.log(state?.id ?? null);
   const id = state?.id || undefined;
 
   const { mutate, isPending } = useMutation({
@@ -96,7 +96,6 @@ const AddNewProduct = () => {
       product: Product;
       productVariation: ProductVariation;
     }) => {
-      // console.log(values);
       const data = {
         barcode: values.product.barCode,
         title: values.product.title,
@@ -129,12 +128,6 @@ const AddNewProduct = () => {
         return res.data;
       }
     },
-    onSuccess: () => {
-      console.log("success");
-    },
-    onError: (err) => {
-      console.log(err.message);
-    },
   });
 
   const handleSubmitFunction = (
@@ -145,12 +138,26 @@ const AddNewProduct = () => {
     if (step == 1) {
       nextStep();
     } else {
+      setSend(true);
+      if (values.product.productVariantsVMs.length == 0) {
+        setSend(false);
+        return;
+      }
       mutate(values);
     }
   };
+  useEffect(() => {
+    if (!send) {
+      setTimeout(() => {
+        setSend(true);
+      }, 2000);
+    }
+  }, [send]);
+
   if (isPending) {
     return <div>pending...</div>;
   }
+
   return (
     <Box>
       <Header title={"Add New Product"} />
@@ -172,6 +179,7 @@ const AddNewProduct = () => {
                 display: "flex",
                 gap: "30px",
                 marginTop: "40px",
+                minHeight: "100vh",
               }}
             >
               <Form
@@ -231,8 +239,12 @@ const AddNewProduct = () => {
           );
         }}
       </Formik>
-      {/* {isSuccess && <Box>isSuccess</Box>}
-      {isError && <Box>Error</Box>} */}
+      {send == false && send != undefined && (
+        <AlertMessage
+          message={"you should have at leaste one variante"}
+          error={true}
+        ></AlertMessage>
+      )}
     </Box>
   );
 };

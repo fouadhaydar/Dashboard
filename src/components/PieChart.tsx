@@ -2,7 +2,13 @@ import { ResponsivePie } from "@nivo/pie";
 import { mockPieData as data } from "../data/mockData";
 import { Box, useTheme } from "@mui/material";
 
-const MyResponsivePie = ({ height }: { height: string }) => {
+const MyResponsivePie = ({
+  height,
+  direction,
+}: {
+  height: string;
+  direction: "row" | "column";
+}) => {
   const theme = useTheme();
   //   const { backgroundColorHeaderFooter } = myColors(theme.palette.mode);
 
@@ -126,12 +132,12 @@ const MyResponsivePie = ({ height }: { height: string }) => {
         legends={[
           {
             anchor: "bottom",
-            direction: "row",
+            direction: direction,
             justify: false,
             translateX: 0,
-            translateY: 56,
-            itemsSpacing: 0,
-            itemWidth: 100,
+            translateY: 40,
+            itemsSpacing: 10,
+            itemWidth: 50,
             itemHeight: 18,
             itemTextColor: "#999",
             itemDirection: "left-to-right",

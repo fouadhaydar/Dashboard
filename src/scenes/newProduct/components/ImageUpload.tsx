@@ -1,21 +1,12 @@
 import { Box, TextField, Typography } from "@mui/material";
 import { ChangeEvent } from "react";
 import { useFormikContext } from "formik";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  // listAll,
-  // list,
-  // connectStorageEmulator,
-} from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import uuid from "react-uuid";
 import { storage } from "../../../../firebase/firebase";
-import { useImage } from "../context/ImageCtxProvider";
+import { useImage } from "../hooks/useImage";
 
 const ImageUpload = () => {
-  // const [imageUrl, setImageUrl] = useState<string | null>(null);
-
   const { values, errors, touched, setValues } = useFormikContext<{
     product: Product;
     productVariant: ProductVariation;
@@ -35,7 +26,6 @@ const ImageUpload = () => {
         const valid = validateFileType(event.target.files[0]);
 
         if (!valid) {
-          console.log("invalid type");
           return;
         }
 
@@ -47,7 +37,6 @@ const ImageUpload = () => {
           .then((snapshot) => {
             getDownloadURL(snapshot.ref)
               .then((url) => {
-                // console.log(url);
                 putImageUrl(url);
               })
               .catch((error) => {
@@ -65,7 +54,6 @@ const ImageUpload = () => {
         fr.onload = () => {
           if (fr.readyState === fr.DONE) {
             const res = fr.result;
-            console.log(typeof res);
             setValues((prev) => {
               return {
                 ...prev,
@@ -75,7 +63,6 @@ const ImageUpload = () => {
                 },
               };
             });
-            // if (typeof res === "string") setFieldValue("imageUrl", res);
           }
         };
         fr.onerror = (error) => {
@@ -96,7 +83,6 @@ const ImageUpload = () => {
         flex: 1,
       }}
     >
-      {/* <Typography variant="h3">Upload Product Image</Typography> */}
       <Box
         sx={{
           display: "flex",
@@ -110,6 +96,7 @@ const ImageUpload = () => {
             gap: "20px",
             flexDirection: "column",
             flex: 1,
+            height: "200px",
           }}
         >
           <TextField
@@ -139,13 +126,14 @@ const ImageUpload = () => {
               justifyContent: "center",
               alignItems: "center",
               cursor: "pointer",
+              overflow: "hidden",
             }}
           >
             {values.product.imageUrl.length > 0 ? (
               <img
                 src={values.product.imageUrl}
                 alt="image"
-                style={{ maxWidth: "100%" }}
+                style={{ width: "200px" }}
               />
             ) : (
               "Upload New Image"

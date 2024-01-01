@@ -60,8 +60,6 @@ export const ProductFormValidation1 = object().shape({
     discount: number().required("Discount Should be a number"),
     imageUrl: string().required("Image is required"),
     manufacturer: string().required("Manufacturer is required"),
-    // manufacturerId: number(),
-    // categoryId: number(),
     category: string().required("Category is required"),
     specification: string().required("Specification is required"),
     barCode: string().required("Bar Code is required"),
@@ -71,7 +69,6 @@ export const ProductFormValidation1 = object().shape({
 const regexPattern = /^(\d+)\s*\/\s*(\d+)$/;
 
 export const ProductFormValidation2 = object().shape({
-  // id: string(),
   productVariation: object().shape({
     price: number().required("Price is required"),
     qty: number().required("Quantity is required"),
@@ -81,7 +78,6 @@ export const ProductFormValidation2 = object().shape({
       ramStorage: string()
         .matches(regexPattern, "it should be like 12 / 250")
         .required("Ram and Storage is required"),
-      // storage: string().required("Storage is required"),
     }),
   }),
 });

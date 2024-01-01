@@ -2,7 +2,13 @@ import { Box, Button, useTheme } from "@mui/material";
 import myColors from "./color";
 import { GridToolbar } from "@mui/x-data-grid";
 
-const CustomeToolBar = ({ handleClick }: { handleClick: () => void }) => {
+const CustomeToolBar = ({
+  handleClick,
+  title,
+}: {
+  handleClick: () => void;
+  title: string;
+}) => {
   const theme = useTheme();
   const { btnColor, btnTextColor, btnColorHover } = myColors(
     theme.palette.mode
@@ -25,7 +31,7 @@ const CustomeToolBar = ({ handleClick }: { handleClick: () => void }) => {
         }}
         onClick={handleClick}
       >
-        Add new Product
+        {title}
       </Button>
     </Box>
   );

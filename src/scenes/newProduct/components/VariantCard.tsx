@@ -4,8 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useFormikContext } from "formik";
 
 const VariantCard = ({
-  // ram,
-  // storage,
   price,
   qty,
   sku,
@@ -13,10 +11,8 @@ const VariantCard = ({
   number,
   ramStorage,
 }: {
-  // ram: string;
   ramStorage: string;
   color: string;
-  // storage: string;
   price: number;
   qty: number;
   sku: string;

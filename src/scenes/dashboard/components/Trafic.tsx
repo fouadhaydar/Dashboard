@@ -26,7 +26,6 @@ const Trafic = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-evenly",
-          //   gap: "10px",
           height: "90%",
         }}
       >
@@ -79,7 +78,6 @@ const Trafic = () => {
           <Typography>FaceBook</Typography>
           <span>40%</span>
         </Box>
-        {/* <Divider variant="fullWidth" /> */}
       </Box>
     </Box>
   );

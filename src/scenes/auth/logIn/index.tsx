@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { logInValidation } from "../validation/validationShema";
 import {
   Box,
@@ -20,7 +20,7 @@ import { axiosCustom } from "../../../api/axiosCustome";
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { setLoggedIn } = useLogIn();
+  const { setLoggedIn, userAuth } = useLogIn();
 
   const theme = useTheme();
   const { btnColor, btnTextColor, btnColorHover } = myColors(
@@ -73,6 +73,33 @@ const LogIn = () => {
     },
   };
 
+  const { mutate: refresh } = useMutation({
+    mutationKey: ["refreshToken2"],
+    mutationFn: async () => {
+      const { data } = await axiosCustom({
+        method: "POST",
+        url: "/user/refreshtoken",
+      });
+      return data;
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+    onSuccess: (data) => {
+      setLoggedIn({
+        token: data.token,
+        role: data.role,
+        userName: data.userName,
+      });
+    },
+  });
+
+  useEffect(() => {
+    if (!userAuth) {
+      refresh();
+    }
+  }, []);
+
   const handlePssword = () => setShowPassword((prev) => !prev);
 
   const handleSubmit = async (values: { email: string; password: string }) => {
@@ -82,7 +109,6 @@ const LogIn = () => {
   const handleForgetPassword = (email: string) => {
     if (!isLoading) resetPassword({ email });
   };
-
   return (
     <>
       <Box height={"100vh"} width={"100%"}>
@@ -95,7 +121,6 @@ const LogIn = () => {
         >
           <Box width={"100%"} display={"flex"} justifyContent={"center"}>
             <Box
-              width={"50%"}
               display={"flex"}
               flexDirection={"column"}
               gap={4}
@@ -104,6 +129,7 @@ const LogIn = () => {
                   fontSize: "16px",
                 },
               }}
+              className="form-parent"
             >
               <Typography variant="h2">Log In To Your Account</Typography>
               <Formik

@@ -8,7 +8,6 @@ const DataCard = ({ title, data }: { title: string; data: ReactNode }) => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        // flexDirection: "column",
         gap: "10px",
         alignItems: "flex-end",
         backgroundColor: theme.palette.background.default,

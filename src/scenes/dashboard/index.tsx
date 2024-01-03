@@ -3,7 +3,7 @@ import { Header } from "../../components/Header";
 import Card from "./components/Card";
 import BarChart from "../../components/BarChart";
 import MyResponsivePie from "../../components/PieChart";
-import LineChart from "../../components/LineChart";
+// import LineChart from "../../components/LineChart";
 import Trafic from "./components/Trafic";
 
 const Dashboard = () => {
@@ -15,7 +15,6 @@ const Dashboard = () => {
       gap={"20px"}
       height={"100vh"}
     >
-      {/* <button onClick={() => }> navigate </button> */}
       <Header title="Dashboard" subtitle={"Welcome to your dashboard"} />
       <Box
         sx={{
@@ -87,16 +86,14 @@ const Dashboard = () => {
           paddingBottom: "40px",
         }}
       >
-        {/*  */}
         <Card />
         <Card />
         <Card />
         <Card />
-        {/* </Box> */}
-        {/* <Box sx={{ display: "flex", gap: "20px", height: "50vh", width: "100%" }}> */}
         <BarChart height="400px" />
         <MyResponsivePie height="400px" direction="row" />
-        <LineChart height="400px" />
+        {/* there is a problem in line chart probably form the library */}
+        {/* <LineChart height="400px" /> */}
         <Trafic />
       </Box>
     </Box>

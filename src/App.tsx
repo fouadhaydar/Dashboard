@@ -1,5 +1,6 @@
 import Topbar from "./scenes/global/Topbar";
 import {
+  BrowserRouter,
   Navigate,
   Outlet,
   Route,
@@ -30,7 +31,7 @@ import { SideBarProvider } from "./scenes/global/context/SideBarCtx";
 const RequierAuth = () => {
   const { userAuth } = useLogIn();
 
-  return userAuth ? <Outlet /> : <Navigate to="/login" replace />;
+  return userAuth ? <Outlet /> : <Navigate to={"/login"} replace={true} />;
 };
 
 const ProtectedRoute = () => {

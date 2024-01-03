@@ -86,11 +86,13 @@ const LogIn = () => {
       console.log(error);
     },
     onSuccess: (data) => {
-      setLoggedIn({
-        token: data.token,
-        role: data.role,
-        userName: data.userName,
-      });
+      if (data) {
+        setLoggedIn({
+          token: data?.token,
+          role: data?.role,
+          userName: data?.userName,
+        });
+      }
     },
   });
 

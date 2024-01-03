@@ -164,11 +164,13 @@ const SideBar = () => {
           flexDirection={"column"}
           alignItems={"center"}
         >
-          <Typography variant="h3" sx={{ mt: 2, mb: 1 }} fontWeight="bold">
-            {`${
-              userAuth?.userName.toUpperCase()[0]
-            }${userAuth?.userName.substring(1)}`}
-          </Typography>
+          {userAuth && (
+            <Typography variant="h3" sx={{ mt: 2, mb: 1 }} fontWeight="bold">
+              {`${
+                userAuth?.userName?.toUpperCase()[0]
+              }${userAuth?.userName?.substring(1)}`}
+            </Typography>
+          )}
           <Typography variant="h6">fancy Admin</Typography>
         </Box>
       </Box>

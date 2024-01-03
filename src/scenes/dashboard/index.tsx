@@ -15,6 +15,7 @@ const Dashboard = () => {
       gap={"20px"}
       height={"100vh"}
     >
+      {/* <button onClick={() => }> navigate </button> */}
       <Header title="Dashboard" subtitle={"Welcome to your dashboard"} />
       <Box
         sx={{

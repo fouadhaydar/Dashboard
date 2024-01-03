@@ -5,7 +5,6 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-  // useNavigate,
 } from "react-router-dom";
 import SideBar from "./scenes/global/SideBar";
 import Dashboard from "./scenes/dashboard";
@@ -65,7 +64,6 @@ export const router = createBrowserRouter(
       </Route>
       <Route path="login" element={<LogIn />} />
       <Route path="reset-password" element={<ResetPassword />} />
-      {/* <Route path="sign-up" element={< />} /> */}
     </Route>
   )
 );

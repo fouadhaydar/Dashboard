@@ -16,36 +16,36 @@ const LineChart = ({ height }: { height: string }) => {
     >
       <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        colors={{
-          scheme: "dark2",
-        }}
-        theme={{
-          axis: {
-            ticks: {
-              text: { fill: theme.palette.mode == "dark" ? "white" : "black" },
-            },
-            legend: {
-              text: { fill: theme.palette.mode == "dark" ? "white" : "black" },
-            },
-            domain: {
-              line: {
-                stroke: theme.palette.mode == "dark" ? "white" : "black",
-              },
-            },
-          },
-          grid: {
-            line: {
-              stroke: "gray",
-              strokeWidth: ".5px",
-            },
-          },
-          legends: {
-            text: {
-              fill: theme.palette.mode == "dark" ? "white" : "black",
-            },
-          },
-        }}
+        // margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        // colors={{
+        //   scheme: "dark2",
+        // }}
+        // theme={{
+        //   axis: {
+        //     ticks: {
+        //       text: { fill: theme.palette.mode == "dark" ? "white" : "black" },
+        //     },
+        //     legend: {
+        //       text: { fill: theme.palette.mode == "dark" ? "white" : "black" },
+        //     },
+        //     domain: {
+        //       line: {
+        //         stroke: theme.palette.mode == "dark" ? "white" : "black",
+        //       },
+        //     },
+        //   },
+        //   grid: {
+        //     line: {
+        //       stroke: "gray",
+        //       strokeWidth: ".5px",
+        //     },
+        //   },
+        //   legends: {
+        //     text: {
+        //       fill: theme.palette.mode == "dark" ? "white" : "black",
+        //     },
+        //   },
+        // }}
         xScale={{ type: "point" }}
         tooltip={(e) => (
           <Box
@@ -113,12 +113,12 @@ const LineChart = ({ height }: { height: string }) => {
             direction: "column",
             justify: false,
             translateX: 100,
-            translateY: 0,
+            translateY: 10,
             itemsSpacing: 0,
             itemDirection: "left-to-right",
             itemWidth: 80,
             itemHeight: 20,
-            itemOpacity: 0.75,
+            // itemOpacity: 0.75,
             symbolSize: 12,
             symbolShape: "circle",
             symbolBorderColor: "rgba(0, 0, 0, .5)",

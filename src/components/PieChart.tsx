@@ -134,8 +134,6 @@ const MyResponsivePie = ({
             anchor: "bottom",
             direction: direction,
             justify: false,
-            translateX: 0,
-            translateY: 40,
             itemsSpacing: 10,
             itemWidth: 50,
             itemHeight: 18,
@@ -144,6 +142,7 @@ const MyResponsivePie = ({
             itemOpacity: 1,
             symbolSize: 18,
             symbolShape: "circle",
+            translateY: 56,
             effects: [
               {
                 on: "hover",

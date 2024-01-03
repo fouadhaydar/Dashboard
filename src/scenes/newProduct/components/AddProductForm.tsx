@@ -33,9 +33,11 @@ const AddProductForm = () => {
   };
   const axiosInterceptor = useAxiosInterceptors();
 
-  const { data: categories } = useQuery<
-    { id: 1; categoryName: "phone"; products: null }[]
-  >({
+  const {
+    data: categories,
+    isLoading,
+    isError,
+  } = useQuery<{ id: 1; categoryName: "phone"; products: null }[]>({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await axiosInterceptor({
@@ -47,18 +49,28 @@ const AddProductForm = () => {
     refetchOnReconnect: true,
   });
 
-  const { data: companies } = useQuery<
-    { id: number; manufacturerName: string; products: Product[] }[]
-  >({
-    queryKey: ["company"],
-    queryFn: async () => {
-      const res = await axiosInterceptor({
-        url: "/manufacturer/getallmanufacturer",
-        method: "GET",
-      });
-      return res.data;
-    },
-  });
+  const {
+    data: companies,
+    isLoading: fetching,
+    isError: faild,
+  } = useQuery<{ id: number; manufacturerName: string; products: Product[] }[]>(
+    {
+      queryKey: ["company"],
+      queryFn: async () => {
+        const res = await axiosInterceptor({
+          url: "/manufacturer/getallmanufacturer",
+          method: "GET",
+        });
+        return res.data;
+      },
+    }
+  );
+
+  if (isLoading || fetching) {
+    return <div>Loading ...</div>;
+  } else if (isError || faild) {
+    return <div>Error</div>;
+  }
 
   const color = theme.palette.mode === "dark" ? "warning" : "primary";
   return (
@@ -101,50 +113,53 @@ const AddProductForm = () => {
               }}
               color={color}
             />
-            <TextField
-              required
-              select
-              label="Manufacturer"
-              variant="outlined"
-              name="product.manufacturer"
-              type="text"
-              placeholder="Manufacturer"
-              value={values.product.manufacturer}
-              error={
-                !!errors.product?.manufacturer && touched.product?.manufacturer
-              }
-              helperText={
-                touched.product?.manufacturer && errors.product?.manufacturer
-              }
-              onBlur={handleBlur}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const companyId = companies?.filter(
-                  (comp) => comp.manufacturerName == e.target.value
-                )[0].id;
+            {companies && (
+              <TextField
+                required
+                select
+                label="Manufacturer"
+                variant="outlined"
+                name="product.manufacturer"
+                type="text"
+                placeholder="Manufacturer"
+                value={values.product.manufacturer}
+                error={
+                  !!errors.product?.manufacturer &&
+                  touched.product?.manufacturer
+                }
+                helperText={
+                  touched.product?.manufacturer && errors.product?.manufacturer
+                }
+                onBlur={handleBlur}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  const companyId = companies?.filter(
+                    (comp) => comp.manufacturerName == e.target.value
+                  )[0].id;
 
-                setValues((prev) => {
-                  return {
-                    ...prev,
-                    product: {
-                      ...prev.product,
-                      manufacturerId: companyId ?? 0,
-                    },
-                  };
-                });
-                handleChange(e);
-              }}
-              sx={{
-                ...helperTextStyle,
-              }}
-              color={color}
-            >
-              {companies &&
-                companies.map((company) => (
-                  <MenuItem key={company.id} value={company.manufacturerName}>
-                    {company.manufacturerName}
-                  </MenuItem>
-                ))}
-            </TextField>
+                  setValues((prev) => {
+                    return {
+                      ...prev,
+                      product: {
+                        ...prev.product,
+                        manufacturerId: companyId ?? 0,
+                      },
+                    };
+                  });
+                  handleChange(e);
+                }}
+                sx={{
+                  ...helperTextStyle,
+                }}
+                color={color}
+              >
+                {companies.length > 0 &&
+                  companies.map((company) => (
+                    <MenuItem key={company.id} value={company.manufacturerName}>
+                      {company.manufacturerName}
+                    </MenuItem>
+                  ))}
+              </TextField>
+            )}
           </Box>
           <Box className="add-product">
             <TextField
@@ -164,46 +179,50 @@ const AddProductForm = () => {
               }}
               color={color}
             />
-            <TextField
-              required
-              select
-              label="Category"
-              variant="outlined"
-              name="product.category"
-              type="text"
-              placeholder="Select Category"
-              value={values.product.category}
-              error={!!errors.product?.category && touched.product?.category}
-              helperText={touched.product?.category && errors.product?.category}
-              onBlur={handleBlur}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const catId = categories?.filter(
-                  (cat) => cat.categoryName == e.target.value
-                )[0].id;
+            {categories && (
+              <TextField
+                required
+                select
+                label="Category"
+                variant="outlined"
+                name="product.category"
+                type="text"
+                placeholder="Select Category"
+                value={values.product.category}
+                error={!!errors.product?.category && touched.product?.category}
+                helperText={
+                  touched.product?.category && errors.product?.category
+                }
+                onBlur={handleBlur}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  const catId = categories?.filter(
+                    (cat) => cat.categoryName == e.target.value
+                  )[0].id;
 
-                setValues((prev) => {
-                  return {
-                    ...prev,
-                    product: {
-                      ...prev.product,
-                      categoryId: catId ?? 0,
-                    },
-                  };
-                });
-                handleChange(e);
-              }}
-              sx={{
-                ...helperTextStyle,
-              }}
-              color={color}
-            >
-              {categories &&
-                categories.map((option) => (
-                  <MenuItem key={option.id} value={option.categoryName}>
-                    {option.categoryName}
-                  </MenuItem>
-                ))}
-            </TextField>
+                  setValues((prev) => {
+                    return {
+                      ...prev,
+                      product: {
+                        ...prev.product,
+                        categoryId: catId ?? 0,
+                      },
+                    };
+                  });
+                  handleChange(e);
+                }}
+                sx={{
+                  ...helperTextStyle,
+                }}
+                color={color}
+              >
+                {categories.length > 0 &&
+                  categories.map((option) => (
+                    <MenuItem key={option.id} value={option.categoryName}>
+                      {option.categoryName}
+                    </MenuItem>
+                  ))}
+              </TextField>
+            )}
             <TextField
               required
               label="Bar Code"

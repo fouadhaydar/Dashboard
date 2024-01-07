@@ -47,20 +47,29 @@ const AddProductForm = () => {
     refetchOnReconnect: true,
   });
 
-  const { data: companies } = useQuery<
-    { id: number; manufacturerName: string; products: Product[] }[]
-  >({
-    queryKey: ["company"],
-    queryFn: async () => {
-      const res = await axiosInterceptor({
-        url: "/manufacturer/getallmanufacturer",
-        method: "GET",
-      });
-      return res.data;
-    },
-  });
+  const {
+    data: companies,
+    isFetching: fetchingCompanies,
+    isError: failedFetchCompanies,
+  } = useQuery<{ id: number; manufacturerName: string; products: Product[] }[]>(
+    {
+      queryKey: ["company"],
+      queryFn: async () => {
+        const res = await axiosInterceptor({
+          url: "/manufacturer/getallmanufacturer",
+          method: "GET",
+        });
+        return res.data;
+      },
+    }
+  );
 
   const color = theme.palette.mode === "dark" ? "warning" : "primary";
+  if (fetchingCompanies) {
+    return <div>Loading ... </div>;
+  } else if (failedFetchCompanies) {
+    return <div>Error please check your internet conection</div>;
+  }
   return (
     <Box
       sx={{
